@@ -23,7 +23,7 @@ function Get-TeamViewerUserAccessToken {
 
 function Update-TeamViewerUserAccessTokenFile {
     param (
-        $TeamViewerAccessTokenFile = "~\TeamViewerUserAccessToken.xml",
+        $TeamViewerAccessTokenFile = "$Home\TeamViewerUserAccessToken.xml",
         [Parameter(Mandatory)]$ClientId,
         [Parameter(Mandatory)]$ClientSecret
     )
@@ -41,7 +41,7 @@ function Export-TeamViewerUserAccessTokenToFile {
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]$token_type,
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]$expires_in,
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]$refresh_token,
-        $Path = "~\TeamViewerUserAccessToken.xml"
+        $Path = "$Home\TeamViewerUserAccessToken.xml"
     )
     process {
         $AccessToken = ConvertTo-SecureString -String $access_token -AsPlainText -Force | ConvertFrom-SecureString
@@ -58,7 +58,7 @@ function Export-TeamViewerUserAccessTokenToFile {
 
 function Import-TeamViewerUserAccessTokenFromFile {
     param (
-        $Path = "~\TeamViewerUserAccessToken.xml"
+        $Path = "$Home\TeamViewerUserAccessToken.xml"
     )
     try {
         $UserAccessTokenObject = Import-Clixml -Path $Path
