@@ -49,7 +49,7 @@ function Export-TeamViewerUserAccessTokenToFile {
         $RefreshToken = ConvertTo-SecureString -String $refresh_token -AsPlainText -Force | ConvertFrom-SecureString
         [PSCustomObject][Ordered]@{
             AccessToken = $AccessToken
-            TokenType = $token_type
+            TokenType = $token_type.substring(0,1).toupper()+$token_type.substring(1).tolower()
             ExpirationDate = $ExpirationDate
             RefreshToken = $RefreshToken
         } | Export-Clixml -Path $Path -Force
